@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.banmensize = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // banmensize
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox1.Location = new System.Drawing.Point(440, 300);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(320, 47);
-            this.textBox1.TabIndex = 0;
+            this.banmensize.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.banmensize.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.banmensize.Location = new System.Drawing.Point(440, 300);
+            this.banmensize.Name = "banmensize";
+            this.banmensize.Size = new System.Drawing.Size(320, 47);
+            this.banmensize.TabIndex = 0;
             // 
             // label1
             // 
@@ -57,11 +57,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(440, 260);
+            this.label2.Location = new System.Drawing.Point(420, 260);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(267, 28);
+            this.label2.Size = new System.Drawing.Size(378, 28);
             this.label2.TabIndex = 2;
-            this.label2.Text = "(5以上20以下　N×N)";
+            this.label2.Text = "(5以上20以下 N×N 半角数字)";
             // 
             // button1
             // 
@@ -73,6 +73,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "スタート！";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -83,7 +84,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.banmensize);
             this.Name = "Form1";
             this.Text = "まいんすいーぱ";
             this.ResumeLayout(false);
@@ -93,7 +94,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox banmensize;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
