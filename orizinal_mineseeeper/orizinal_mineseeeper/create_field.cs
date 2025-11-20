@@ -10,6 +10,8 @@ namespace orizinal_mineseeeper
 {
     internal class create_field : Button
     {
+        
+
         private Form1 _Form1;
 
         private int tateyokoSize;  // 縦の長さ
@@ -20,14 +22,18 @@ namespace orizinal_mineseeeper
 
         private int yoko; // 横の座標
 
-        public create_field (Form1 Form1,int FieldSize,int _tate,int _yoko)
+        private bool mineflag; // 地雷の設定
+
+        private int minesum; // 地雷の総数
+
+        public create_field (Form1 Form1,int FieldSize,int _tate,int _yoko, bool onmine)
         {
             // Form1の参照
             _Form1 = Form1;
             // 縦横の個数
             tateyokoSize = FieldSize;
             // フィールド全体のマスの数
-            FieldArea = FieldSize*FieldSize;
+            FieldArea = FieldSize * FieldSize;
             // 縦の場所の参照
             tate = _tate;
             // 横の場所の参照
@@ -38,6 +44,9 @@ namespace orizinal_mineseeeper
             Location = new Point(this.Size.Width * _yoko, this.Size.Height * _tate);
             // 初期の色設定
             BackColor = Color.LightSkyBlue;
+            // 地雷の設定
+            mineflag = onmine;
+
         }
     }
 }
