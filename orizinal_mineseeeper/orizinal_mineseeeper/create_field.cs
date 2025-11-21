@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,6 +28,13 @@ namespace orizinal_mineseeeper
 
         private int minesum; // 地雷の総数
 
+        private Color _CloseColor = Color.LightSkyBlue;
+
+        private Color _OpenColor = Color.White;
+
+        private int modeflag; // 0:開ける　1:旗　2:一マス開け　3:縦一列開け　4:横一行開け
+
+
         public create_field (Form1 Form1,int FieldSize,int _tate,int _yoko, bool onmine)
         {
             // Form1の参照
@@ -43,10 +52,15 @@ namespace orizinal_mineseeeper
             // ボタンの位置設定
             Location = new Point(this.Size.Width * _yoko, this.Size.Height * _tate);
             // 初期の色設定
-            BackColor = Color.LightSkyBlue;
+            BackColor = _CloseColor;
             // 地雷の設定
             mineflag = onmine;
 
         }
+        public void ClickEvent(object sender, EventArgs e)
+        {
+            modeflag = Form1.ReturnMode();
+        }
+        
     }
 }

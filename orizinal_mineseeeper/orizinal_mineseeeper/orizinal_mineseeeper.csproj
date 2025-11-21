@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClickMode.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="create_field.cs">
       <SubType>Component</SubType>
     </Compile>

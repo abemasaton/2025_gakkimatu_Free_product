@@ -21,6 +21,8 @@ namespace orizinal_mineseeeper
 
         private int FieldSize;
 
+        private static int modeflag; // 0:開ける　1:旗　2:一マス開け　3:縦一列開け　4:横一行開け
+
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -83,6 +85,19 @@ namespace orizinal_mineseeeper
             }
 
         }
-        
+        internal create_field Getfieldbutto(int x, int y)
+        {
+            if (x < 0 || x >= FieldSize) return null;
+            if (y < 0 || y >= FieldSize) return null;
+            return _buttonArray[x, y];
+        }
+        public void ChangeMode(int x)
+        {
+            modeflag = x;
+        }
+        internal static int ReturnMode()
+        {
+            return modeflag;
+        }
     }
 }
