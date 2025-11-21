@@ -51,6 +51,8 @@ namespace orizinal_mineseeeper
             Size = new Size((_Form1.Height - 40) / tateyokoSize, (_Form1.Height - 40) / tateyokoSize);
             // ボタンの位置設定
             Location = new Point(this.Size.Width * _yoko, this.Size.Height * _tate);
+            // 文字サイズ設定
+            Font = new Font(this.Font.OriginalFontName, (_Form1.Height - 40) / tateyokoSize / 2);
             // 初期の色設定
             BackColor = _CloseColor;
             // 地雷の設定
