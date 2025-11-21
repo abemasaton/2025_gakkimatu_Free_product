@@ -21,7 +21,7 @@ namespace orizinal_mineseeeper
 
         private int FieldSize;
 
-        private static int modeflag; // 0:開ける　1:旗　2:一マス開け　3:縦一列開け　4:横一行開け
+        private static int modeflag = 0; // 0:開ける　1:旗　2:一マス開け　3:縦一列開け　4:横一行開け
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -61,12 +61,12 @@ namespace orizinal_mineseeeper
             {
                 for (j = 0; j < FieldSize; j++)
                 {
-                    ransuu = random.Next(3);
+                    ransuu = random.Next(minesum + notmine);
                     if (minesum == 0) mineflag = false;
 
                     else if (notmine == 0) mineflag = true;
 
-                    else if (ransuu == 0)
+                    else if (ransuu <= minesum)
                     {
                         mineflag = true;
                         minesum = minesum - 1;
@@ -80,12 +80,15 @@ namespace orizinal_mineseeeper
                         create_field minefield = new create_field(
                             this, FieldSize, i, j, mineflag);
 
+                    // 配列にボタンの参照を追加
+                    _buttonArray[i, j] = minefield;
+
                     Controls.Add(minefield);
                 }
             }
 
         }
-        internal create_field Getfieldbutto(int x, int y)
+        internal create_field Getfieldbutton(int x, int y)
         {
             if (x < 0 || x >= FieldSize) return null;
             if (y < 0 || y >= FieldSize) return null;

@@ -56,11 +56,52 @@ namespace orizinal_mineseeeper
             // 地雷の設定
             mineflag = onmine;
 
+            Click += ClickEvent;
+
         }
+        public void Openfield() // 共通のオープン処理
+        {
+            if (mineflag)
+            {
+                Text = ("M");
+            }
+            else
+            {
+                int Cnt = 0;
+                for (int i = 0; i < _CheckData.Length; i++)
+                {
+                    var data = _CheckData[i];
+                    var button = _Form1.Getfieldbutton(tate + data[0], yoko + data[1]);
+
+                    if (button != null && button.mineflag)
+                    {
+                        Cnt++;
+                    }
+                }
+                Text = Cnt.ToString();
+            }
+            BackColor = _OpenColor;
+        }
+
+        private int[][] _CheckData =
+        {
+            new int[]{ -1, -1},
+            new int[]{ -1,  0},
+            new int[]{ -1,  1},
+            new int[]{  0,  1},
+            new int[]{  0, -1},
+            new int[]{  1, -1},
+            new int[]{  1,  0},
+            new int[]{  1,  1},
+        };
+
         public void ClickEvent(object sender, EventArgs e)
         {
             modeflag = Form1.ReturnMode();
+            if (modeflag == 0) // モードオープン
+            {
+                _Form1.Getfieldbutton(tate, yoko).Openfield();
+            }
         }
-        
     }
 }
