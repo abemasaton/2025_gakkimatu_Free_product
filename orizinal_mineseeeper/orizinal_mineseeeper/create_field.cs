@@ -66,7 +66,7 @@ namespace orizinal_mineseeeper
             Click += ClickEvent;
 
         }
-        public int Openfield()
+        public void Openfield()
         {
             int Cnt = 0;
             for (int i = 0; i < _CheckData.Length; i++)
@@ -80,23 +80,29 @@ namespace orizinal_mineseeeper
                 }
             }
             Text = Cnt.ToString();
-            return Cnt;
+            BackColor = _OpenColor;
+            Openedmas = true;
+            this.Click -= ClickEvent; // クリックイベントの削除
+        }
+        public void Openmine()
+        {
+            Text = ("M");
+            MessageBox.Show("あなたは地雷を踏みました lol");
+            BackColor = _OpenColor;
+            Openedmas = true;
+            this.Click -= ClickEvent; // クリックイベントの削除
         }
         public void mineCheck() // 共通のオープン処理
         {
-            if(Openedmas) MessageBox.Show("ますはひｒかれた");
             if (mineflag)
             {
-                Text = ("M");
-                MessageBox.Show("あなたは地雷を踏みました lol");
+                Openmine();
             }
             else
             {
                 Openfield();
             }
-            BackColor = _OpenColor;
-            Openedmas = true;
-            this.Click -= ClickEvent; // クリックイベントの削除
+            
         }
 
         private int[][] _CheckData =
