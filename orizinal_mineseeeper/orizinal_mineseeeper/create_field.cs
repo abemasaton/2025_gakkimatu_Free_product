@@ -57,6 +57,8 @@ namespace orizinal_mineseeeper
             BackColor = _CloseColor;
             // 地雷の設定
             mineflag = onmine;
+            // 旗が立っているかの確認
+
 
             Click += ClickEvent;
 
@@ -83,6 +85,8 @@ namespace orizinal_mineseeeper
                 Text = Cnt.ToString();
             }
             BackColor = _OpenColor;
+
+            this.Click -= ClickEvent; // クリックイベントの削除
         }
 
         private int[][] _CheckData =
