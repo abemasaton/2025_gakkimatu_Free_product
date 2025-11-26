@@ -46,9 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClickMode.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="create_field.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -57,6 +54,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modeopen.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modepoint.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

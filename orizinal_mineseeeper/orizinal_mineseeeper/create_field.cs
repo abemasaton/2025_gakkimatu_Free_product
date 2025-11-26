@@ -16,7 +16,7 @@ namespace orizinal_mineseeeper
 
         private Form1 _Form1;
 
-        private int tateyokoSize;  // 縦の長さ
+        private int tateyokoSize;  // 縦の数
 
         private int FieldArea;  // マスの数
 
@@ -24,7 +24,7 @@ namespace orizinal_mineseeeper
 
         private int yoko; // 横の座標
 
-        private bool mineflag; // 地雷の設定
+        public bool mineflag; // 地雷の設定
 
         private int minesum; // 地雷の総数
 
@@ -61,6 +61,7 @@ namespace orizinal_mineseeeper
             BackColor = _CloseColor;
             // 地雷の設定
             mineflag = onmine;
+
 
 
             Click += ClickEvent;
@@ -117,12 +118,29 @@ namespace orizinal_mineseeeper
             new int[]{  1,  1},
         };
 
+        public void flagPoint()
+        {
+            if (flagedflag)
+            {
+                Text = ("");
+                flagedflag = false;
+            }
+            else
+            {
+                Text = ("P");
+                flagedflag = true;
+            }
+        }
         public void ClickEvent(object sender, EventArgs e)
         {
             modeflag = Form1.ReturnMode();
-            if (modeflag == 0) // モードオープン
+            if (modeflag == 0 && flagedflag == false) // モードオープン
             {
                 _Form1.Getfieldbutton(tate, yoko).mineCheck();
+            }
+            if (modeflag == 1) // モード旗
+            {
+                _Form1.Getfieldbutton(tate, yoko).flagPoint();
             }
         }
     }

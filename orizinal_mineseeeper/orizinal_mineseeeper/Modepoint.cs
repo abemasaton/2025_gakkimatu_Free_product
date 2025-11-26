@@ -6,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace orizinal_mineseeeper
 {
-    internal class ClickMode : Button
+    internal class Modepoint : Button
     {
         // 有効時の色
         private Color _OnColor = Color.LightYellow;
@@ -18,19 +19,37 @@ namespace orizinal_mineseeeper
         private int Modeflag;
 
         private Form1 _form1;
-        public ClickMode (Form1 Form1)
+
+        private Modeopen _modeopen;
+
+        public Modepoint(Form1 Form1)
         {
+
             _form1 = Form1;
+
+            Modeflag = 1;
+
+            Location = new Point(_form1.Width - 250, _form1.Height - 400);
+
+            Size = new Size(60, 60);
+
+            BackColor = _OffColor;
+
+            Click += ClickEvent;
         }
         public void ModeOff()
         {
             BackColor = _OffColor;
         }
+        public void GetotherModebutton(Modeopen Modeopen)
+        {
+            _modeopen = Modeopen;
+        }
         public void ClickEvent(object sender, EventArgs e)
         {
             BackColor = _OnColor;
             _form1.ChangeMode(Modeflag);
+            _modeopen.ModeOff();
         }
-
     }
 }

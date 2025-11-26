@@ -87,6 +87,18 @@ namespace orizinal_mineseeeper
                 }
             }
 
+            Modeopen modeopenButton = new Modeopen(this); //　モードオープンのボタン生成
+
+            Controls.Add(modeopenButton);
+
+            Modepoint modepointButton = new Modepoint(this); // モード旗のボタン生成
+
+            Controls.Add(modepointButton);
+
+            modeopenButton.GetotherModebutton(modepointButton);
+
+            modepointButton.GetotherModebutton(modeopenButton);
+
         }
         internal create_field Getfieldbutton(int x, int y)
         {
