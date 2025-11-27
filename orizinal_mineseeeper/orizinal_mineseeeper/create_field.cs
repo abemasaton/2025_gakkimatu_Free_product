@@ -166,8 +166,8 @@ namespace orizinal_mineseeeper
             }
             if (modeflag == 2)
             {
-                specialstock = Form1.Returnspecialstock();
-                if(specialstock >= 0) _Form1.Getfieldbutton(tate, yoko).specialopen();
+                specialstock = _Form1.Returnspecialstock();
+                if (specialstock >= 0) _Form1.Getfieldbutton(tate, yoko).specialopen();
             }
 
             int i = 0;

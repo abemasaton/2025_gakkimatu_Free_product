@@ -23,7 +23,9 @@ namespace orizinal_mineseeeper
 
         private static int modeflag = 0; // 0:開ける　1:旗　2:一マス開け　3:縦一列開け　4:横一行開け
 
-        private static int specialstock;
+        public static int specialstock; // スペシャルの残り使用可能回数
+
+        private Labelspecialstock usespecialstock; //　ラベルの参照
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -110,6 +112,11 @@ namespace orizinal_mineseeeper
 
             modespecialButton.GetotherModebutton(modeopenButton, modepointButton);
 
+            Labelspecialstock specialstocklabel = new Labelspecialstock(this, specialstock);
+
+            usespecialstock = specialstocklabel;
+
+            Controls.Add(specialstocklabel);
         }
         internal create_field Getfieldbutton(int x, int y)
         {
@@ -125,9 +132,10 @@ namespace orizinal_mineseeeper
         {
             return modeflag;
         }
-        public static int Returnspecialstock()
+        public int Returnspecialstock()
         {
             if(specialstock >= 0) specialstock--;
+            if (specialstock >= 0) usespecialstock.Usespecialstock(specialstock);
             return specialstock;
         }
     }

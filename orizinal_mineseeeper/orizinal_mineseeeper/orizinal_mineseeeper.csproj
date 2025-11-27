@@ -55,6 +55,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Labelspecialstock.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Modeopen.cs">
       <SubType>Component</SubType>
     </Compile>
