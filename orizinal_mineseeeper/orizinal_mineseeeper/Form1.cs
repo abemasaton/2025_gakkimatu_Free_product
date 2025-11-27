@@ -96,9 +96,15 @@ namespace orizinal_mineseeeper
 
             Controls.Add(modepointButton);
 
-            modeopenButton.GetotherModebutton(modepointButton);
+            Modespecial modespecialButton = new Modespecial(this); // モード旗のボタン生成
 
-            modepointButton.GetotherModebutton(modeopenButton);
+            Controls.Add(modespecialButton);
+
+            modeopenButton.GetotherModebutton(modepointButton, modespecialButton);
+
+            modepointButton.GetotherModebutton(modeopenButton, modespecialButton);
+
+            modespecialButton.GetotherModebutton(modeopenButton, modepointButton);
 
         }
         internal create_field Getfieldbutton(int x, int y)

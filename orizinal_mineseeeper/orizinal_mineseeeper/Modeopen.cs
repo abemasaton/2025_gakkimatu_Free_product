@@ -21,6 +21,8 @@ namespace orizinal_mineseeeper
 
         private Modepoint _modepoint;
 
+        private Modespecial _modespecial;
+
         public Modeopen(Form1 Form1)
         {
 
@@ -39,15 +41,17 @@ namespace orizinal_mineseeeper
         {
             BackColor = _OffColor;
         }
-        public void GetotherModebutton(Modepoint Modepoint)
+        public void GetotherModebutton(Modepoint Modepoint, Modespecial Modespecial)
         {
             _modepoint = Modepoint;
+            _modespecial = Modespecial;
         }
         public void ClickEvent(object sender, EventArgs e)
         {
             BackColor = _OnColor;
             _form1.ChangeMode(Modeflag);
             _modepoint.ModeOff();
+            _modespecial.ModeOff();
         }
     }
 }

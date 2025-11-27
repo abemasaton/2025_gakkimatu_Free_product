@@ -6,10 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace orizinal_mineseeeper
 {
-    internal class Modepoint : Button
+    internal class Modespecial : Button
     {
         // 有効時の色
         private Color _OnColor = Color.LightYellow;
@@ -22,22 +21,21 @@ namespace orizinal_mineseeeper
 
         private Modeopen _modeopen;
 
-        private Modespecial _modespecial;
+        private Modepoint _modepoint;
 
-        public Modepoint(Form1 Form1)
+        public Modespecial(Form1 Form1)
         {
 
             _form1 = Form1;
 
-            Modeflag = 1;
+            Modeflag = 2;
 
-            Location = new Point(_form1.Width - 250, _form1.Height - 380);
-
+            Location = new Point(_form1.Width - 250, _form1.Height - 260);
             Size = new Size(60, 60);
 
             BackColor = _OffColor;
 
-            Text = ("P");
+            Text = ("S");
 
             Font = new Font(this.Font.OriginalFontName, 36);
 
@@ -47,17 +45,17 @@ namespace orizinal_mineseeeper
         {
             BackColor = _OffColor;
         }
-        public void GetotherModebutton(Modeopen Modeopen, Modespecial Modespecial)
+        public void GetotherModebutton(Modeopen Modeopen, Modepoint Modepoint)
         {
             _modeopen = Modeopen;
-            _modespecial = Modespecial;
+            _modepoint = Modepoint;
         }
         public void ClickEvent(object sender, EventArgs e)
         {
             BackColor = _OnColor;
             _form1.ChangeMode(Modeflag);
             _modeopen.ModeOff();
-            _modespecial.ModeOff();
+            _modepoint.ModeOff();
         }
     }
 }

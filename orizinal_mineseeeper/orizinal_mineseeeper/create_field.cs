@@ -136,6 +136,20 @@ namespace orizinal_mineseeeper
                 flagedflag = true;
             }
         }
+
+        public void specialopen()
+        {
+            if (mineflag)
+            {
+                Text = ("P");
+                flagedflag = true;
+            }
+            else
+            {
+                Openfield();
+            }
+        }
+
         public void ClickEvent(object sender, EventArgs e)
         {
             modeflag = Form1.ReturnMode();
@@ -146,6 +160,10 @@ namespace orizinal_mineseeeper
             if (modeflag == 1) // モード旗
             {
                 _Form1.Getfieldbutton(tate, yoko).flagPoint();
+            }
+            if(modeflag == 2)
+            {
+                _Form1.Getfieldbutton(tate, yoko).specialopen();
             }
         }
     }
