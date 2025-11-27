@@ -23,6 +23,8 @@ namespace orizinal_mineseeeper
 
         private static int modeflag = 0; // 0:開ける　1:旗　2:一マス開け　3:縦一列開け　4:横一行開け
 
+        private static int specialstock;
+
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -51,6 +53,8 @@ namespace orizinal_mineseeeper
             _buttonArray = new create_field[FieldSize, FieldSize];
 
             int i, j, minesum, notmine, ransuu;
+
+            specialstock = FieldSize;
 
             minesum = FieldSize * FieldSize / 3;
             notmine = FieldSize * FieldSize - minesum;
@@ -117,10 +121,14 @@ namespace orizinal_mineseeeper
         {
             modeflag = x;
         }
-        internal static int ReturnMode()
+        public static int ReturnMode()
         {
             return modeflag;
         }
-
+        public static int Returnspecialstock()
+        {
+            if(specialstock >= 0) specialstock--;
+            return specialstock;
+        }
     }
 }

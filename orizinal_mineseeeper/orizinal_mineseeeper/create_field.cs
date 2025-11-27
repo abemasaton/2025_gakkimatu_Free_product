@@ -38,6 +38,7 @@ namespace orizinal_mineseeeper
 
         private bool flagedflag = false; // 旗が立っているかの確認
 
+        private int specialstock; // スペシャルの残り数
 
         public create_field (Form1 Form1,int FieldSize,int _tate,int _yoko, bool onmine)
         {
@@ -163,7 +164,8 @@ namespace orizinal_mineseeeper
             }
             if (modeflag == 2)
             {
-                _Form1.Getfieldbutton(tate, yoko).specialopen();
+                specialstock = Form1.Returnspecialstock();
+                if(specialstock >= 0) _Form1.Getfieldbutton(tate, yoko).specialopen();
             }
 
             int i = 0;
