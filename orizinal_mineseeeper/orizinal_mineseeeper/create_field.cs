@@ -148,20 +148,5 @@ namespace orizinal_mineseeeper
                 _Form1.Getfieldbutton(tate, yoko).flagPoint();
             }
         }
-
-        public static void Firstopen(Form1 _Form1, int tateyokoSize)
-        {
-            int Cnt;
-            for (int i = 0; i < tateyokoSize; i++)
-            {
-                for(int j = 0; j < tateyokoSize; j++)
-                {
-                    Cnt = 0;
-                    Cnt = _Form1.Getfieldbutton(i, j).countaroundmine(Cnt);
-                    if (Cnt == 0 && _Form1.Getfieldbutton(i, j).mineflag == false) 
-                        _Form1.Getfieldbutton(i, j).Openfield();
-                }
-            }
-        }
     }
 }

@@ -88,8 +88,6 @@ namespace orizinal_mineseeeper
             }
             label3.Text = ($"地雷の数 = {FieldSize * FieldSize / 3}");
 
-            create_field.Firstopen(this, FieldSize);
-
             Modeopen modeopenButton = new Modeopen(this); //　モードオープンのボタン生成
 
             Controls.Add(modeopenButton);
