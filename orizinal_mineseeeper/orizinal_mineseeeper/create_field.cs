@@ -161,9 +161,40 @@ namespace orizinal_mineseeeper
             {
                 _Form1.Getfieldbutton(tate, yoko).flagPoint();
             }
-            if(modeflag == 2)
+            if (modeflag == 2)
             {
                 _Form1.Getfieldbutton(tate, yoko).specialopen();
+            }
+
+            int i = 0;
+            bool finishflag = true;
+            while (i < tateyokoSize && finishflag)
+            {
+                for (int j = 0; j < tateyokoSize; j++)
+                {
+                    if(_Form1.Getfieldbutton(i, j).Openedmas == false &&
+                        _Form1.Getfieldbutton(i, j).flagedflag == false)
+                    {
+                        finishflag = false;
+                    }
+                }
+                i++;
+            }
+            if (finishflag)
+            {
+                MessageBox.Show("終了　リザルトを表示します");
+                for (i = 0; i < tateyokoSize; i++)
+                {
+                    for (int j = 0; j < tateyokoSize; j++)
+                    {
+                        if (_Form1.Getfieldbutton(i, j).Openedmas == _Form1.Getfieldbutton(i, j).mineflag
+                            || _Form1.Getfieldbutton(i, j).flagedflag != _Form1.Getfieldbutton(i, j).mineflag)
+                        {
+                            _Form1.Getfieldbutton(i, j).BackColor = Color.OrangeRed;
+                            _Form1.Getfieldbutton(i, j).Click -= ClickEvent;
+                        }
+                    }
+                }
             }
         }
     }
