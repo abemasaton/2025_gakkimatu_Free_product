@@ -97,7 +97,7 @@ namespace orizinal_mineseeeper
         {
             Text = ("M");
             MessageBox.Show("あなたは地雷を踏みました lol");
-            BackColor = _OpenColor;
+            BackColor = Color.OrangeRed;
             Openedmas = true;
             this.Click -= ClickEvent; // クリックイベントの削除
         }
@@ -191,10 +191,13 @@ namespace orizinal_mineseeeper
                 {
                     for (int j = 0; j < tateyokoSize; j++)
                     {
-                        if (_Form1.Getfieldbutton(i, j).Openedmas == _Form1.Getfieldbutton(i, j).mineflag
-                            || _Form1.Getfieldbutton(i, j).flagedflag != _Form1.Getfieldbutton(i, j).mineflag)
+                        if (_Form1.Getfieldbutton(i, j).Openedmas && _Form1.Getfieldbutton(i, j).mineflag)
                         {
-                            _Form1.Getfieldbutton(i, j).BackColor = Color.OrangeRed;
+                            perfectflag = false;
+                        }
+                        else if (_Form1.Getfieldbutton(i, j).flagedflag != _Form1.Getfieldbutton(i, j).mineflag)
+                        {
+                            _Form1.Getfieldbutton(i, j).BackColor = Color.GreenYellow;
                             _Form1.Getfieldbutton(i, j).Click -= ClickEvent;
                             perfectflag = false;
                         }
