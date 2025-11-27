@@ -40,6 +40,8 @@ namespace orizinal_mineseeeper
 
         private int specialstock; // スペシャルの残り数
 
+        private bool perfectflag = true; // 完璧なクリアか判定
+
         public create_field (Form1 Form1,int FieldSize,int _tate,int _yoko, bool onmine)
         {
             // Form1の参照
@@ -194,9 +196,11 @@ namespace orizinal_mineseeeper
                         {
                             _Form1.Getfieldbutton(i, j).BackColor = Color.OrangeRed;
                             _Form1.Getfieldbutton(i, j).Click -= ClickEvent;
+                            perfectflag = false;
                         }
                     }
                 }
+                if(perfectflag) MessageBox.Show("完璧にクリア! ");
             }
         }
     }

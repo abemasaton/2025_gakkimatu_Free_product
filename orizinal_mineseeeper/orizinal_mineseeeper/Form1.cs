@@ -54,7 +54,7 @@ namespace orizinal_mineseeeper
 
             int i, j, minesum, notmine, ransuu;
 
-            specialstock = FieldSize;
+            specialstock = FieldSize * 2;
 
             minesum = FieldSize * FieldSize / 3;
             notmine = FieldSize * FieldSize - minesum;
