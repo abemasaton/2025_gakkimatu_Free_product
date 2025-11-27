@@ -70,6 +70,14 @@ namespace orizinal_mineseeeper
         public void Openfield()
         {
             int Cnt = 0;
+            Cnt = countaroundmine(Cnt);
+            Text = Cnt.ToString();
+            BackColor = _OpenColor;
+            Openedmas = true;
+            this.Click -= ClickEvent; // クリックイベントの削除
+        }
+        public int countaroundmine(int C)
+        {
             for (int i = 0; i < _CheckData.Length; i++)
             {
                 var data = _CheckData[i];
@@ -77,13 +85,10 @@ namespace orizinal_mineseeeper
 
                 if (button != null && button.mineflag)
                 {
-                    Cnt++;
+                    C++;
                 }
             }
-            Text = Cnt.ToString();
-            BackColor = _OpenColor;
-            Openedmas = true;
-            this.Click -= ClickEvent; // クリックイベントの削除
+            return C;
         }
         public void Openmine()
         {
@@ -141,6 +146,21 @@ namespace orizinal_mineseeeper
             if (modeflag == 1) // モード旗
             {
                 _Form1.Getfieldbutton(tate, yoko).flagPoint();
+            }
+        }
+
+        public static void Firstopen(Form1 _Form1, int tateyokoSize)
+        {
+            int Cnt;
+            for (int i = 0; i < tateyokoSize; i++)
+            {
+                for(int j = 0; j < tateyokoSize; j++)
+                {
+                    Cnt = 0;
+                    Cnt = _Form1.Getfieldbutton(i, j).countaroundmine(Cnt);
+                    if (Cnt == 0 && _Form1.Getfieldbutton(i, j).mineflag == false) 
+                        _Form1.Getfieldbutton(i, j).Openfield();
+                }
             }
         }
     }

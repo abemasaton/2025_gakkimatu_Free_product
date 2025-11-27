@@ -77,7 +77,7 @@ namespace orizinal_mineseeeper
                         notmine = notmine - 1;
                     }
 
-                        create_field minefield = new create_field(
+                    create_field minefield = new create_field(
                             this, FieldSize, i, j, mineflag);
 
                     // 配列にボタンの参照を追加
@@ -86,6 +86,9 @@ namespace orizinal_mineseeeper
                     Controls.Add(minefield);
                 }
             }
+            label3.Text = ($"地雷の数 = {FieldSize * FieldSize / 3}");
+
+            create_field.Firstopen(this, FieldSize);
 
             Modeopen modeopenButton = new Modeopen(this); //　モードオープンのボタン生成
 
@@ -114,5 +117,6 @@ namespace orizinal_mineseeeper
         {
             return modeflag;
         }
+
     }
 }
