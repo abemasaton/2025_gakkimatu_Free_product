@@ -33,7 +33,7 @@ namespace orizinal_mineseeeper
 
             Location = new Point(_form1.Width - 250, _form1.Height - 340);
 
-            Size = new Size(60, 60);
+            Size = new Size(70, 70);
 
             BackColor = _OffColor;
 

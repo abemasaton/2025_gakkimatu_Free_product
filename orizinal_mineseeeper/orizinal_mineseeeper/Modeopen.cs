@@ -31,7 +31,7 @@ namespace orizinal_mineseeeper
             Modeflag = 0;
 
             Location = new Point(_form1.Width - 250, _form1.Height - 420);
-            Size = new Size(60, 60);
+            Size = new Size(70, 70);
 
             BackColor = _OnColor;
 
