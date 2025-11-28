@@ -25,9 +25,11 @@ namespace orizinal_mineseeeper
 
         private static int Cntflag = 0; // 旗の数を数える
 
-        public static int specialstock; // スペシャルの残り使用可能回数
+        private int specialstock; // スペシャルの残り使用可能回数
 
         private Labelspecialstock usespecialstock; //　sp回数ラベルの参照
+
+        private int tateSpstock; // 縦スペシャルの残り使用回数
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -59,6 +61,7 @@ namespace orizinal_mineseeeper
             int i, j, minesum, notmine, ransuu;
 
             specialstock = FieldSize * 2;
+            tateSpstock = 1;
 
             minesum = FieldSize * FieldSize / 3;
             notmine = FieldSize * FieldSize - minesum;
@@ -113,7 +116,7 @@ namespace orizinal_mineseeeper
 
             Controls.Add(modetateSpButton);
 
-            modeopenButton.GetotherModebutton(modepointButton, modespecialButton, modetateSpButton);
+            modeopenButton.GetotherModebutton(modepointButton, modespecialButton, modetateSpButton); // モードボタン同士の参照
 
             modepointButton.GetotherModebutton(modeopenButton, modespecialButton, modetateSpButton);
 
@@ -146,6 +149,12 @@ namespace orizinal_mineseeeper
             if(specialstock >= 0) specialstock--;
             if (specialstock >= 0) usespecialstock.Usespecialstock(specialstock);
             return specialstock;
+        }
+        public int ReturntateSpstock()
+        {
+            if (tateSpstock >= 0) tateSpstock--;
+            // if (tateSpstock >= 0) usespecialstock.Usespecialstock(specialstock);
+            return tateSpstock;
         }
         public void flagedCounter(bool plus)
         {

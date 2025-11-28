@@ -40,6 +40,8 @@ namespace orizinal_mineseeeper
 
         private int specialstock; // スペシャルの残り数
 
+        private int tateSpstock;
+
         private bool perfectflag = true; // 完璧なクリアか判定
 
         public create_field (Form1 Form1,int FieldSize,int _tate,int _yoko, bool onmine)
@@ -183,9 +185,14 @@ namespace orizinal_mineseeeper
             }
             if (modeflag == 3)
             {
-                for (i = 0; i < tateyokoSize; i++)
+                tateSpstock = _Form1.ReturntateSpstock();
+                if (tateSpstock >= 0)
                 {
-                    _Form1.Getfieldbutton(i, yoko).specialopen();
+
+                    for (i = 0; i < tateyokoSize; i++)
+                    {
+                        _Form1.Getfieldbutton(i, yoko).specialopen();
+                    }
                 }
             }
 
