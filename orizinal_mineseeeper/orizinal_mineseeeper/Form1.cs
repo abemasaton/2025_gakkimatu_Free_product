@@ -109,11 +109,17 @@ namespace orizinal_mineseeeper
 
             Controls.Add(modespecialButton);
 
-            modeopenButton.GetotherModebutton(modepointButton, modespecialButton);
+            ModetateSp modetateSpButton = new ModetateSp(this); // モード旗のボタン生成
 
-            modepointButton.GetotherModebutton(modeopenButton, modespecialButton);
+            Controls.Add(modetateSpButton);
 
-            modespecialButton.GetotherModebutton(modeopenButton, modepointButton);
+            modeopenButton.GetotherModebutton(modepointButton, modespecialButton, modetateSpButton);
+
+            modepointButton.GetotherModebutton(modeopenButton, modespecialButton, modetateSpButton);
+
+            modespecialButton.GetotherModebutton(modeopenButton, modepointButton, modetateSpButton);
+
+            modetateSpButton.GetotherModebutton(modeopenButton, modepointButton, modespecialButton);
 
             Labelspecialstock specialstocklabel = new Labelspecialstock(this, specialstock);
 

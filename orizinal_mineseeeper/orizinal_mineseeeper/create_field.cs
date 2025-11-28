@@ -166,6 +166,7 @@ namespace orizinal_mineseeeper
 
         public void ClickEvent(object sender, EventArgs e)
         {
+            int i;
             modeflag = Form1.ReturnMode();
             if (modeflag == 0 && flagedflag == false) // モードオープン
             {
@@ -180,8 +181,15 @@ namespace orizinal_mineseeeper
                 specialstock = _Form1.Returnspecialstock();
                 if (specialstock >= 0) _Form1.Getfieldbutton(tate, yoko).specialopen();
             }
+            if (modeflag == 3)
+            {
+                for (i = 0; i < tateyokoSize; i++)
+                {
+                    _Form1.Getfieldbutton(i, yoko).specialopen();
+                }
+            }
 
-            int i = 0;
+            i = 0;
             bool finishflag = true;
             while (i < tateyokoSize && finishflag)
             {

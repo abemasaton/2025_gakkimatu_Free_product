@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace orizinal_mineseeeper
 {
-    internal class Modespecial : Button
+    internal class ModetateSp : Button
     {
         // 有効時の色
         private Color _OnColor = Color.LightYellow;
@@ -23,23 +23,23 @@ namespace orizinal_mineseeeper
 
         private Modepoint _modepoint;
 
-        private ModetateSp _modetatesp;
+        private Modespecial _modespecial;
 
-        public Modespecial(Form1 Form1)
+        public ModetateSp(Form1 Form1)
         {
 
             _form1 = Form1;
 
-            Modeflag = 2;
+            Modeflag = 3;
 
-            Location = new Point(_form1.Width - 250, _form1.Height - 300);
+            Location = new Point(_form1.Width - 250, _form1.Height - 230);
             Size = new Size(70, 70);
 
             BackColor = _OffColor;
 
-            Text = ("S");
+            Text = ("⇕");
 
-            Font = new Font(this.Font.OriginalFontName, 36);
+            Font = new Font(this.Font.OriginalFontName, 44);
 
             Click += ClickEvent;
         }
@@ -47,11 +47,11 @@ namespace orizinal_mineseeeper
         {
             BackColor = _OffColor;
         }
-        public void GetotherModebutton(Modeopen modeopen, Modepoint modepoint, ModetateSp modetatesp)
+        public void GetotherModebutton(Modeopen modeopen, Modepoint modepoint, Modespecial modespecial)
         {
             _modeopen = modeopen;
             _modepoint = modepoint;
-            _modetatesp = modetatesp;
+            _modespecial = modespecial;
         }
         public void ClickEvent(object sender, EventArgs e)
         {
@@ -59,7 +59,7 @@ namespace orizinal_mineseeeper
             _form1.ChangeMode(Modeflag);
             _modeopen.ModeOff();
             _modepoint.ModeOff();
-            _modetatesp.ModeOff();
+            _modespecial.ModeOff();
         }
     }
 }

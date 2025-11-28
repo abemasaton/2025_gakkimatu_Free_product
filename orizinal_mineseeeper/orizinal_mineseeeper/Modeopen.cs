@@ -23,6 +23,8 @@ namespace orizinal_mineseeeper
 
         private Modespecial _modespecial;
 
+        private ModetateSp _modetatesp;
+
         public Modeopen(Form1 Form1)
         {
 
@@ -30,7 +32,7 @@ namespace orizinal_mineseeeper
 
             Modeflag = 0;
 
-            Location = new Point(_form1.Width - 250, _form1.Height - 420);
+            Location = new Point(_form1.Width - 250, _form1.Height - 440);
             Size = new Size(70, 70);
 
             BackColor = _OnColor;
@@ -41,10 +43,11 @@ namespace orizinal_mineseeeper
         {
             BackColor = _OffColor;
         }
-        public void GetotherModebutton(Modepoint Modepoint, Modespecial Modespecial)
+        public void GetotherModebutton(Modepoint modepoint, Modespecial modespecial, ModetateSp modetatesp)
         {
-            _modepoint = Modepoint;
-            _modespecial = Modespecial;
+            _modepoint = modepoint;
+            _modespecial = modespecial;
+            _modetatesp = modetatesp;
         }
         public void ClickEvent(object sender, EventArgs e)
         {
@@ -52,6 +55,7 @@ namespace orizinal_mineseeeper
             _form1.ChangeMode(Modeflag);
             _modepoint.ModeOff();
             _modespecial.ModeOff();
+            _modetatesp.ModeOff();
         }
     }
 }

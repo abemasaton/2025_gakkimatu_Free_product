@@ -19,7 +19,7 @@ namespace orizinal_mineseeeper
         {
             _form1 = Form1;
 
-            Location = new Point(_form1.Width - 180, _form1.Height - 250);
+            Location = new Point(_form1.Width - 180, _form1.Height - 285);
             Size = new Size(150, 60);
 
             _text = stock.ToString();
