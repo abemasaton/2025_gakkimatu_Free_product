@@ -132,11 +132,13 @@ namespace orizinal_mineseeeper
             {
                 Text = ("");
                 flagedflag = false;
+                _Form1.flagedCounter(false);
             }
             else
             {
                 Text = ("P");
                 flagedflag = true;
+                _Form1.flagedCounter(true);
             }
         }
 
@@ -144,11 +146,20 @@ namespace orizinal_mineseeeper
         {
             if (mineflag)
             {
-                Text = ("P");
-                flagedflag = true;
+                if (flagedflag == false)
+                {
+                    Text = ("P");
+                    flagedflag = true;
+                    _Form1.flagedCounter(true);
+                }
             }
             else
             {
+                if (flagedflag)
+                {
+                    flagedflag = false;
+                    _Form1.flagedCounter(false);
+                }
                 Openfield();
             }
         }
