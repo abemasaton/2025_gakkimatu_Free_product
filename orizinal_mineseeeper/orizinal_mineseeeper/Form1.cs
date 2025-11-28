@@ -31,6 +31,8 @@ namespace orizinal_mineseeeper
 
         private int tateSpstock; // 縦スペシャルの残り使用回数
 
+        private LabeltateSpstock usetateSpstock; // tatesp回数ラベルの参照
+
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -129,6 +131,12 @@ namespace orizinal_mineseeeper
             usespecialstock = specialstocklabel;
 
             Controls.Add(specialstocklabel);
+
+            LabeltateSpstock tateSpstocklabel = new LabeltateSpstock(this, tateSpstock);
+
+            usetateSpstock = tateSpstocklabel;
+
+            Controls.Add(tateSpstocklabel);
         }
         internal create_field Getfieldbutton(int x, int y)
         {
@@ -153,7 +161,7 @@ namespace orizinal_mineseeeper
         public int ReturntateSpstock()
         {
             if (tateSpstock >= 0) tateSpstock--;
-            // if (tateSpstock >= 0) usespecialstock.Usespecialstock(specialstock);
+            if (tateSpstock >= 0) usetateSpstock.Usespecialstock(tateSpstock);
             return tateSpstock;
         }
         public void flagedCounter(bool plus)

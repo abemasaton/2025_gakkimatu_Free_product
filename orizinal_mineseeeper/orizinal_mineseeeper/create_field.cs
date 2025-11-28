@@ -188,7 +188,6 @@ namespace orizinal_mineseeeper
                 tateSpstock = _Form1.ReturntateSpstock();
                 if (tateSpstock >= 0)
                 {
-
                     for (i = 0; i < tateyokoSize; i++)
                     {
                         _Form1.Getfieldbutton(i, yoko).specialopen();
