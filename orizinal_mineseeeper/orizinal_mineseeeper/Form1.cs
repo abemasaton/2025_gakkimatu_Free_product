@@ -37,36 +37,58 @@ namespace orizinal_mineseeeper
         {
             try
             {
-                int Testtext = int.Parse(banmensize.Text);  // 入力された数値を保管
-                if (Testtext < 5 || Testtext > 20)  // 数値が5～20以外をはじく
+                int fieldTesttext = int.Parse(banmensize.Text);  // 入力された数値を保管
+                if (fieldTesttext < 5 || fieldTesttext > 20)  // 数値が5～20以外をはじく
                 {
-                    MessageBox.Show("5～20の範囲で入力してください");
+                    MessageBox.Show("※フィールドサイズの設定\n" +
+                        "5～20の範囲で入力してください");
+                    return;
+                }
+                int mineTesttext = int.Parse(textBox1.Text);
+                if (mineTesttext > fieldTesttext * fieldTesttext || mineTesttext < 0)
+                {
+                    MessageBox.Show($"※地雷の数の設定\n" +
+                        $"0以上{fieldTesttext * fieldTesttext}以下で入力してください");
                     return;
                 }
             }
             catch
             {
-                MessageBox.Show("正しい値を入力してください");  
+                if (banmensize.Text == "" || textBox1.Text == "")
+                {
+                    MessageBox.Show("値が入力されていません");
+                    return;
+                }
+                MessageBox.Show("いずれかに使用できない物が含まれています");
                 return;  // 正しく数値を受け取れなかったらはじく
             }
-            FieldSize = int.Parse(banmensize.Text);  // 入力された数値を保管
+            FieldSize = int.Parse(banmensize.Text);  // 入力されたフィールドサイズを保管
+
+            int minesum, notmine;
+
+            minesum = int.Parse(textBox1.Text);  // 入力された地雷の数を保管
+            notmine = FieldSize * FieldSize - minesum;
+
+            label3.Text = ($"地雷の数 = {minesum}");
+            label4.Text = ($"旗の数　　= {Cntflag}");
+
             button1.Visible = false;     //用済みのコントロール達を非表示
             banmensize.Visible = false;
             label1.Visible = false;
             label2.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            textBox1.Visible = false;
 
             // ランダムのインスタンス?
             Random random = new Random();
 
             _buttonArray = new create_field[FieldSize, FieldSize];
 
-            int i, j, minesum, notmine, ransuu;
+            int i, j, ransuu;
 
             specialstock = FieldSize * 2;
             tateSpstock = 1;
-
-            minesum = FieldSize * FieldSize / 3;
-            notmine = FieldSize * FieldSize - minesum;
 
             bool mineflag;
 
@@ -99,8 +121,6 @@ namespace orizinal_mineseeeper
                     Controls.Add(minefield);
                 }
             }
-            label3.Text = ($"地雷の数 = {FieldSize * FieldSize / 3}");
-            label4.Text = ($"旗の数　　= {Cntflag}");
 
             Modeopen modeopenButton = new Modeopen(this); //　モードオープンのボタン生成
 
