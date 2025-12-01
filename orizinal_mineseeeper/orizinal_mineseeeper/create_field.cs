@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,8 +19,6 @@ namespace orizinal_mineseeeper
 
         private int tateyokoSize;  // 縦の数
 
-        private int FieldArea;  // マスの数
-
         private int tate; // 縦の座標
 
         private int yoko; // 横の座標
@@ -27,6 +26,8 @@ namespace orizinal_mineseeeper
         public bool mineflag; // 地雷の設定
 
         private int minesum; // 地雷の総数
+
+        private int restFieldArea;  // 残りの地雷のないマスの数
 
         private Color _CloseColor = Color.LightSkyBlue;
 
@@ -44,14 +45,16 @@ namespace orizinal_mineseeeper
 
         private bool perfectflag = true; // 完璧なクリアか判定
 
-        public create_field (Form1 Form1,int FieldSize,int _tate,int _yoko, bool onmine)
+        private bool startOpen = false;
+
+        public create_field (Form1 Form1,int FieldSize,int _tate,int _yoko,int Minesum)
         {
             // Form1の参照
             _Form1 = Form1;
             // 縦横の個数
             tateyokoSize = FieldSize;
-            // フィールド全体のマスの数
-            FieldArea = FieldSize * FieldSize;
+            // 地雷のないマスの数
+            restFieldArea = FieldSize * FieldSize　- Minesum;
             // 縦の場所の参照
             tate = _tate;
             // 横の場所の参照
@@ -64,13 +67,10 @@ namespace orizinal_mineseeeper
             Font = new Font(this.Font.OriginalFontName, (_Form1.Height - 40) / tateyokoSize / 2);
             // 初期の色設定
             BackColor = _CloseColor;
-            // 地雷の設定
-            mineflag = onmine;
+            // 地雷の数の設定
+            minesum = Minesum;
 
-
-
-            Click += ClickEvent;
-
+            Click += FirstClickEvent;
         }
         public void Openfield()
         {
@@ -230,6 +230,72 @@ namespace orizinal_mineseeeper
                 }
                 if(perfectflag) MessageBox.Show("完璧にクリア! ");
             }
+        }
+        public void FirstClickEvent(object sender, EventArgs e)
+        {
+            // ランダムのインスタンス?
+            Random random = new Random();
+
+            int i, j;
+
+            for (i = tate - 1;i <= tate + 1; i++)
+            {
+                for (j = yoko - 1; j <= yoko + 1; j++)
+                {
+                    if (_Form1.Getfieldbutton(i, j) != null)
+                    {
+                        _Form1.Getfieldbutton(i, j).mineflag = false;
+                        _Form1.Getfieldbutton(i, j).deleteFirstEvent();
+                        _Form1.Getfieldbutton(i, j).plusClickEvent();
+                        _Form1.Getfieldbutton(i, j).startOpen = true;
+                        restFieldArea--;
+                    }
+                }
+            }
+            for (i = 0; i < tateyokoSize; i++)
+            {
+                for (j = 0; j < tateyokoSize; j++)
+                {
+                    if(_Form1.Getfieldbutton(i, j).startOpen == false)
+                    {
+                        _Form1.Getfieldbutton(i, j).deleteFirstEvent();
+                        _Form1.Getfieldbutton(i, j).plusClickEvent();
+
+                        if (minesum <= 0) _Form1.Getfieldbutton(i, j).mineflag = false;
+
+                        else if (restFieldArea <= 0) _Form1.Getfieldbutton(i, j).mineflag = true;
+
+                        else if (random.Next(minesum + restFieldArea) < minesum)
+                        {
+                            _Form1.Getfieldbutton(i, j).mineflag = true;
+                            minesum--;
+                        }
+                        else
+                        {
+                            _Form1.Getfieldbutton(i, j).mineflag = false;
+                            restFieldArea--;
+                        }
+                    }
+                }
+            }
+            for (i = tate - 1; i <= tate + 1; i++)
+            {
+                for (j = yoko - 1; j <= yoko + 1; j++)
+                {
+                    if (_Form1.Getfieldbutton(i, j) != null)
+                    {
+                        _Form1.Getfieldbutton(i, j).Openfield();
+                    }
+                }
+            }
+        }
+        public void deleteFirstEvent()
+        {
+            Click -= FirstClickEvent;
+        }
+        public void plusClickEvent()
+        {
+            Click += ClickEvent;
         }
     }
 }

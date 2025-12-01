@@ -114,9 +114,9 @@
             this.label6.Font = new System.Drawing.Font("MS UI Gothic", 14F);
             this.label6.Location = new System.Drawing.Point(420, 370);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(322, 28);
+            this.label6.Size = new System.Drawing.Size(368, 28);
             this.label6.TabIndex = 8;
-            this.label6.Text = "(上のN×N以下 半角数字)";
+            this.label6.Text = "(上の(N×N)-9以下 半角数字)";
             // 
             // textBox1
             // 

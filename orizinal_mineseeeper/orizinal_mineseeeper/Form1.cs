@@ -45,10 +45,10 @@ namespace orizinal_mineseeeper
                     return;
                 }
                 int mineTesttext = int.Parse(textBox1.Text);
-                if (mineTesttext > fieldTesttext * fieldTesttext || mineTesttext < 0)
+                if (mineTesttext > fieldTesttext * fieldTesttext - 9 || mineTesttext < 0)
                 {
                     MessageBox.Show($"※地雷の数の設定\n" +
-                        $"0以上{fieldTesttext * fieldTesttext}以下で入力してください");
+                        $"0以上{fieldTesttext * fieldTesttext - 9}以下で入力してください");
                     return;
                 }
             }
@@ -80,40 +80,19 @@ namespace orizinal_mineseeeper
             label6.Visible = false;
             textBox1.Visible = false;
 
-            // ランダムのインスタンス?
-            Random random = new Random();
-
             _buttonArray = new create_field[FieldSize, FieldSize];
 
-            int i, j, ransuu;
+            int i, j;
 
-            specialstock = FieldSize * 2;
+            specialstock = FieldSize;
             tateSpstock = 1;
-
-            bool mineflag;
 
             for (i = 0; i < FieldSize; i++)
             {
                 for (j = 0; j < FieldSize; j++)
                 {
-                    ransuu = random.Next(minesum + notmine);
-                    if (minesum == 0) mineflag = false;
-
-                    else if (notmine == 0) mineflag = true;
-
-                    else if (ransuu <= minesum)
-                    {
-                        mineflag = true;
-                        minesum = minesum - 1;
-                    }
-                    else
-                    {
-                        mineflag = false;
-                        notmine = notmine - 1;
-                    }
-
                     create_field minefield = new create_field(
-                            this, FieldSize, i, j, mineflag);
+                            this, FieldSize, i, j, minesum);
 
                     // 配列にボタンの参照を追加
                     _buttonArray[i, j] = minefield;
