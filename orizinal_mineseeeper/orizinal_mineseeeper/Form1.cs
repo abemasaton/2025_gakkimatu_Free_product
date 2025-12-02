@@ -80,6 +80,8 @@ namespace orizinal_mineseeeper
             label6.Visible = false;
             textBox1.Visible = false;
 
+            button2.Visible = true;
+
             _buttonArray = new create_field[FieldSize, FieldSize];
 
             int i, j;
@@ -182,6 +184,24 @@ namespace orizinal_mineseeeper
             {
                 return;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("   かんたんな説明\n\n" +
+                "１.左に並んだマスは地雷の混ざったフィールド\n\n" +
+                "　 最初にクリックしたマスと周囲８マスは地雷のないマスとしてひらかれる\n\n" +
+                "２.右の４つのボタンはモード変更ボタン\n\n" +
+                "　 黄色くなっているボタンが現在のモード\n\n" +
+                "　 「O」のボタンはマスをひらくモード\n\n" +
+                "　 「P」のボタンは旗を立てるモード\n\n" +
+                "　 「S」のボタンは地雷があるなら旗をたてる\n\n" +
+                "　 　 　　　　　　地雷がないならひらく　※回数制限あり\n\n" +
+                "　 「⇕」のボタンはクリックしたマスの上下一列に「S」を使う\n\n" +
+                "　 　 　　　　　　　　　　　　　　　　　※回数制限１回\n\n" +
+                "３.すべてのマスがひらくか旗が立つと終了\n\n" +
+                "　 ひらいた地雷のマスは赤く　地雷のないマスに立っていた旗は緑になる\n\n" +
+                "　 赤と緑のマスが０個を目指そう");
         }
     }
 }
