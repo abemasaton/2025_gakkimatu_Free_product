@@ -62,11 +62,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(420, 220);
+            this.label2.Location = new System.Drawing.Point(440, 220);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(378, 28);
+            this.label2.Size = new System.Drawing.Size(305, 28);
             this.label2.TabIndex = 2;
-            this.label2.Text = "(5以上20以下 N×N 半角数字)";
+            this.label2.Text = "(5以上20以下 半角数字)";
             // 
             // button1
             // 
@@ -112,11 +112,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("MS UI Gothic", 14F);
-            this.label6.Location = new System.Drawing.Point(420, 370);
+            this.label6.Location = new System.Drawing.Point(440, 370);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(368, 28);
+            this.label6.Size = new System.Drawing.Size(276, 28);
             this.label6.TabIndex = 8;
-            this.label6.Text = "(上の(N×N)-9以下 半角数字)";
+            this.label6.Text = "(ーーー以下 半角数字)";
             // 
             // textBox1
             // 
@@ -126,6 +126,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(320, 47);
             this.textBox1.TabIndex = 9;
+            this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
             // 
             // Form1
             // 

@@ -169,5 +169,19 @@ namespace orizinal_mineseeeper
             else Cntflag--;
             label4.Text = ($"旗の数　　= {Cntflag}");
         }
+
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                int testtext = int.Parse(banmensize.Text);
+                label6.Text = ($"({testtext * testtext - 9}以下 半角数字)");
+            }
+            catch
+            {
+                return;
+            }
+        }
     }
 }
