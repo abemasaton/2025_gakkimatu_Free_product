@@ -37,6 +37,10 @@ namespace orizinal_mineseeeper
 
             BackColor = _OnColor;
 
+            Text = ("O");
+
+            Font = new Font(this.Font.OriginalFontName, 36);
+
             Click += ClickEvent;
         }
         public void ModeOff()
