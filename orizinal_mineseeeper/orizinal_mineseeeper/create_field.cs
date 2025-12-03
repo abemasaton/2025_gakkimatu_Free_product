@@ -148,11 +148,14 @@ namespace orizinal_mineseeeper
         {
             if (mineflag)
             {
-                if (flagedflag == false)
+                if (Openedmas == false)
                 {
-                    Text = ("P");
-                    flagedflag = true;
-                    _Form1.flagedCounter(true);
+                    if (flagedflag == false)
+                    {
+                        Text = ("P");
+                        flagedflag = true;
+                        _Form1.flagedCounter(true);
+                    }
                 }
             }
             else
