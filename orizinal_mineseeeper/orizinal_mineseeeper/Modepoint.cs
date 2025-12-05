@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace orizinal_mineseeeper
@@ -39,9 +40,10 @@ namespace orizinal_mineseeeper
 
             BackColor = _OffColor;
 
-            Text = ("P");
+            Image = global::orizinal_mineseeeper.Properties.Resources.Whiteflag;
 
-            Font = new Font(this.Font.OriginalFontName, 36);
+            Bitmap resizedImage = new Bitmap(global::orizinal_mineseeeper.Properties.Resources.Whiteflag, new Size(50, 50));
+            Image = resizedImage; // 画像を挿入
 
             Click += ClickEvent;
         }

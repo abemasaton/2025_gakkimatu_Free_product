@@ -132,13 +132,14 @@ namespace orizinal_mineseeeper
         {
             if (flagedflag)
             {
-                Text = ("");
+                Image = null;
                 flagedflag = false;
                 _Form1.flagedCounter(false);
             }
             else
             {
-                Text = ("P");
+                Bitmap resizedImage = new Bitmap(global::orizinal_mineseeeper.Properties.Resources.Whiteflag, new Size(50, 50));
+                Image = resizedImage; // 画像を挿入
                 flagedflag = true;
                 _Form1.flagedCounter(true);
             }
@@ -152,7 +153,8 @@ namespace orizinal_mineseeeper
                 {
                     if (flagedflag == false)
                     {
-                        Text = ("P");
+                        Bitmap resizedImage = new Bitmap(global::orizinal_mineseeeper.Properties.Resources.Whiteflag, new Size(50, 50));
+                        Image = resizedImage; // 画像を挿入
                         flagedflag = true;
                         _Form1.flagedCounter(true);
                     }
