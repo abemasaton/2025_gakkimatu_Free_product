@@ -37,9 +37,8 @@ namespace orizinal_mineseeeper
 
             BackColor = _OffColor;
 
-            Text = ("⇕");
-
-            Font = new Font(this.Font.OriginalFontName, 44);
+            Bitmap resizedImage = new Bitmap(global::orizinal_mineseeeper.Properties.Resources.hanabi_rocket, new Size(50, 50));
+            Image = resizedImage; // 画像を挿入
 
             Click += ClickEvent;
         }

@@ -63,6 +63,26 @@ namespace orizinal_mineseeeper.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap hanabi_rocket {
+            get {
+                object obj = ResourceManager.GetObject("hanabi_rocket", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_つるはし_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-つるはし-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap Whiteflag {
             get {
                 object obj = ResourceManager.GetObject("Whiteflag", resourceCulture);
