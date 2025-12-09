@@ -155,15 +155,23 @@ namespace orizinal_mineseeeper
         }
         public int Returnspecialstock()
         {
-            if(specialstock >= 0) specialstock--;
-            if (specialstock >= 0) usespecialstock.Usespecialstock(specialstock);
-            return specialstock;
+            if (specialstock > 0)
+            {
+                specialstock--;
+                if (specialstock >= 0) usespecialstock.Usespecialstock(specialstock);
+                return specialstock;
+            }
+            return -1;
         }
         public int ReturntateSpstock()
         {
-            if (tateSpstock >= 0) tateSpstock--;
-            if (tateSpstock >= 0) usetateSpstock.Usespecialstock(tateSpstock);
-            return tateSpstock;
+            if (tateSpstock > 0)
+            {
+                tateSpstock--;
+                if (tateSpstock >= 0) usetateSpstock.Usespecialstock(tateSpstock);
+                return tateSpstock;
+            }
+            return -1;
         }
         public void flagedCounter(bool plus)
         {

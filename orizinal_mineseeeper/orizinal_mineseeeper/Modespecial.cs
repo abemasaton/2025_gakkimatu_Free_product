@@ -37,9 +37,8 @@ namespace orizinal_mineseeeper
 
             BackColor = _OffColor;
 
-            Text = ("⇕");
-
-            Font = new Font(this.Font.OriginalFontName, 36);
+            Bitmap resizedImage = new Bitmap(global::orizinal_mineseeeper.Properties.Resources.icons8_つるはし_96, new Size(50, 50));
+            Image = resizedImage; // 画像を挿入
 
             Click += ClickEvent;
         }
