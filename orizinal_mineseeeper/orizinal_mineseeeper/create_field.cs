@@ -79,7 +79,8 @@ namespace orizinal_mineseeeper
             Text = Cnt.ToString();
             BackColor = _OpenColor;
             Openedmas = true;
-            this.Click -= ClickEvent; // クリックイベントの削除
+            Click -= ClickEvent;
+            MouseDown -= RightMouseClick;  // クリックイベントの削除
         }
         public int countaroundmine(int C)
         {
@@ -101,7 +102,8 @@ namespace orizinal_mineseeeper
             MessageBox.Show("あなたは地雷を踏みました lol");
             BackColor = Color.OrangeRed;
             Openedmas = true;
-            this.Click -= ClickEvent; // クリックイベントの削除
+            Click -= ClickEvent;
+            MouseDown -= RightMouseClick;  // クリックイベントの削除
         }
         public void mineCheck() // 共通のオープン処理
         {
@@ -199,14 +201,17 @@ namespace orizinal_mineseeeper
                     }
                 }
             }
-
-            i = 0;
+            Checkfinish();
+        }
+        private void Checkfinish()
+        {
+            int i = 0;
             bool finishflag = true;
             while (i < tateyokoSize && finishflag)
             {
                 for (int j = 0; j < tateyokoSize; j++)
                 {
-                    if(_Form1.Getfieldbutton(i, j).Openedmas == false &&
+                    if (_Form1.Getfieldbutton(i, j).Openedmas == false &&
                         _Form1.Getfieldbutton(i, j).flagedflag == false)
                     {
                         finishflag = false;
@@ -233,7 +238,7 @@ namespace orizinal_mineseeeper
                         }
                     }
                 }
-                if(perfectflag) MessageBox.Show("完璧にクリア! ");
+                if (perfectflag) MessageBox.Show("完璧にクリア! ");
             }
         }
         public void FirstClickEvent(object sender, EventArgs e)
@@ -251,7 +256,6 @@ namespace orizinal_mineseeeper
                     {
                         _Form1.Getfieldbutton(i, j).mineflag = false;
                         _Form1.Getfieldbutton(i, j).deleteFirstEvent();
-                        _Form1.Getfieldbutton(i, j).plusClickEvent();
                         _Form1.Getfieldbutton(i, j).startOpen = true;
                         restFieldArea--;
                     }
@@ -265,6 +269,7 @@ namespace orizinal_mineseeeper
                     {
                         _Form1.Getfieldbutton(i, j).deleteFirstEvent();
                         _Form1.Getfieldbutton(i, j).plusClickEvent();
+                        _Form1.Getfieldbutton(i, j).plusRightClick();
 
                         if (minesum <= 0) _Form1.Getfieldbutton(i, j).mineflag = false;
 
@@ -301,6 +306,18 @@ namespace orizinal_mineseeeper
         public void plusClickEvent()
         {
             Click += ClickEvent;
+        }
+        private void RightMouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                _Form1.Getfieldbutton(tate, yoko).flagPoint();
+            }
+            Checkfinish();
+        }
+        private void plusRightClick()
+        {
+            MouseDown += RightMouseClick;
         }
     }
 }
