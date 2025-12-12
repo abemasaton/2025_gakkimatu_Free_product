@@ -40,8 +40,6 @@ namespace orizinal_mineseeeper
 
             BackColor = _OffColor;
 
-            Image = global::orizinal_mineseeeper.Properties.Resources.Whiteflag;
-
             Bitmap resizedImage = new Bitmap(global::orizinal_mineseeeper.Properties.Resources.Whiteflag, new Size(50, 50));
             Image = resizedImage; // 画像を挿入
 

@@ -84,6 +84,20 @@ namespace orizinal_mineseeeper
             Openedmas = true;
             Click -= ClickEvent; // 左クリックイベントの削除
             MouseDown -= RightMouseClick;  // 右クリックイベントの削除
+
+            if (Cnt == 0) // 周囲に地雷が0なら
+            {
+                for (int i = 0; i < _CheckData.Length; i++)
+                {
+                    var data = _CheckData[i];
+                    var button = _Form1.Getfieldbutton(tate + data[0], yoko + data[1]);
+
+                    if (button != null && button.Openedmas == false)
+                    {
+                        button.Openfield(); // ひらく
+                    }
+                }
+            }
         }
         /// <summary>
         /// 周囲８マスの地雷を数える
@@ -158,7 +172,8 @@ namespace orizinal_mineseeeper
             }
             else
             {
-                Bitmap resizedImage = new Bitmap(global::orizinal_mineseeeper.Properties.Resources.Whiteflag, new Size(50, 50));
+                Bitmap resizedImage = new Bitmap(global::orizinal_mineseeeper.Properties.Resources.Whiteflag,
+                    new Size((_Form1.Height - 40) / tateyokoSize - 5, (_Form1.Height - 40) / tateyokoSize - 5));
                 Image = resizedImage; // 画像を挿入
                 flagedflag = true;
                 _Form1.flagedCounter(true);
@@ -175,7 +190,8 @@ namespace orizinal_mineseeeper
                 {
                     if (flagedflag == false)
                     {
-                        Bitmap resizedImage = new Bitmap(global::orizinal_mineseeeper.Properties.Resources.Whiteflag, new Size(50, 50));
+                        Bitmap resizedImage = new Bitmap(global::orizinal_mineseeeper.Properties.Resources.Whiteflag,
+                            new Size((_Form1.Height - 40) / tateyokoSize - 5, (_Form1.Height - 40) / tateyokoSize - 5));
                         Image = resizedImage; // 画像を挿入
                         flagedflag = true;
                         _Form1.flagedCounter(true);
@@ -320,16 +336,7 @@ namespace orizinal_mineseeeper
                     }
                 }
             }
-            for (i = tate - 1; i <= tate + 1; i++)
-            {
-                for (j = yoko - 1; j <= yoko + 1; j++)
-                {
-                    if (_Form1.Getfieldbutton(i, j) != null)
-                    {
-                        _Form1.Getfieldbutton(i, j).Openfield();
-                    }
-                }
-            }
+            _Form1.Getfieldbutton(tate, yoko).Openfield();
         }
         public void deleteFirstEvent()
         {
