@@ -17,11 +17,11 @@ namespace orizinal_mineseeeper
             InitializeComponent();
         }
 
-        private create_field[,] _buttonArray;
+        private create_field[,] _buttonArray; // フィールドボタンの参照
 
         private int FieldSize;
 
-        private static int modeflag = 0; // 0:開ける　1:旗　2:一マス開け　3:縦一列開け　4:横一行開け
+        private static int modeflag = 0; // 0:開ける　1:旗　2:一マス開け　3:縦一列開け
 
         private static int Cntflag = 0; // 旗の数を数える
 
@@ -33,7 +33,7 @@ namespace orizinal_mineseeeper
 
         private LabeltateSpstock usetateSpstock; // tatesp回数ラベルの参照
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)　// スタートボタンを押したとき
         {
             try
             {
@@ -52,7 +52,7 @@ namespace orizinal_mineseeeper
                     return;
                 }
             }
-            catch
+            catch　// 数字ではない
             {
                 if (banmensize.Text == "" || textBox1.Text == "")
                 {
@@ -64,10 +64,9 @@ namespace orizinal_mineseeeper
             }
             FieldSize = int.Parse(banmensize.Text);  // 入力されたフィールドサイズを保管
 
-            int minesum, notmine;
+            int minesum;
 
             minesum = int.Parse(textBox1.Text);  // 入力された地雷の数を保管
-            notmine = FieldSize * FieldSize - minesum;
 
             label3.Text = ($"地雷の数 = {minesum}");
             label4.Text = ($"旗の数　　= {Cntflag}");
@@ -80,13 +79,13 @@ namespace orizinal_mineseeeper
             label6.Visible = false;
             textBox1.Visible = false;
 
-            button2.Visible = true;
+            button2.Visible = true; // インフォボタンを表示
 
-            _buttonArray = new create_field[FieldSize, FieldSize];
+            _buttonArray = new create_field[FieldSize, FieldSize];　// フィールドのボタンの参照
 
             int i, j;
 
-            specialstock = FieldSize;
+            specialstock = FieldSize;　// つるはしのストック
             tateSpstock = 1;
 
             for (i = 0; i < FieldSize; i++)
@@ -111,11 +110,11 @@ namespace orizinal_mineseeeper
 
             Controls.Add(modepointButton);
 
-            Modespecial modespecialButton = new Modespecial(this); // モード旗のボタン生成
+            Modespecial modespecialButton = new Modespecial(this); // モードつるはしのボタン生成
 
             Controls.Add(modespecialButton);
 
-            ModetateSp modetateSpButton = new ModetateSp(this); // モード旗のボタン生成
+            ModetateSp modetateSpButton = new ModetateSp(this); // モード⇕のボタン生成
 
             Controls.Add(modetateSpButton);
 
@@ -147,46 +146,49 @@ namespace orizinal_mineseeeper
         }
         public void ChangeMode(int x)
         {
-            modeflag = x;
+            modeflag = x; // モードを表す整数を受け取る
         }
         public static int ReturnMode()
         {
-            return modeflag;
+            return modeflag; // モードを表す変数を渡す
         }
-        public int Returnspecialstock()
+        public int Returnspecialstock() // つるはしの残り回数を返す
         {
             if (specialstock > 0)
             {
                 specialstock--;
-                if (specialstock >= 0) usespecialstock.Usespecialstock(specialstock);
+                if (specialstock >= 0) usespecialstock.Usespecialstock(specialstock); // 残り回数を表示
                 return specialstock;
             }
             return -1;
         }
-        public int ReturntateSpstock()
+        public int ReturntateSpstock() // ⇕の残り回数を返す
         {
             if (tateSpstock > 0)
             {
                 tateSpstock--;
-                if (tateSpstock >= 0) usetateSpstock.Usespecialstock(tateSpstock);
+                if (tateSpstock >= 0) usetateSpstock.Usespecialstock(tateSpstock); // 残り回数を表示
                 return tateSpstock;
             }
             return -1;
         }
-        public void flagedCounter(bool plus)
+        public void flagedCounter(bool plus) // 旗の数を数える
         {
             if (plus) Cntflag++;
             else Cntflag--;
             label4.Text = ($"旗の数　　= {Cntflag}");
         }
 
-        private void textBox1_Click(object sender, EventArgs e)
+        private void textBox1_Click(object sender, EventArgs e) // 設定可能な地雷の数を表示
         {
 
             try
             {
                 int testtext = int.Parse(banmensize.Text);
-                label6.Text = ($"({testtext * testtext - 9}以下 半角数字)");
+                if (testtext >= 5 && testtext <= 20)
+                {
+                    label6.Text = ($"({testtext * testtext - 9}以下 半角数字)");
+                }
             }
             catch
             {

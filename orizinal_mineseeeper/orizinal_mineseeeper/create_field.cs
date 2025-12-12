@@ -29,9 +29,9 @@ namespace orizinal_mineseeeper
 
         private int restFieldArea;  // 残りの地雷のないマスの数
 
-        private Color _CloseColor = Color.LightSkyBlue;
+        private Color _CloseColor = Color.LightSkyBlue; // ひらいていない色
 
-        private Color _OpenColor = Color.White;
+        private Color _OpenColor = Color.White; // ひらいた色
 
         private int modeflag; // 0:開ける　1:旗　2:一マス開け　3:縦一列開け　4:横一行開け
 
@@ -39,13 +39,13 @@ namespace orizinal_mineseeeper
 
         private bool flagedflag = false; // 旗が立っているかの確認
 
-        private int specialstock; // スペシャルの残り数
+        private int specialstock; // つるはしの残り回数
 
-        private int tateSpstock;
+        private int tateSpstock; // ⇕の残り回数
 
         private bool perfectflag = true; // 完璧なクリアか判定
 
-        private bool startOpen = false;
+        private bool startOpen = false; // 最初に開けたマスのフラグ
 
         public create_field (Form1 Form1,int FieldSize,int _tate,int _yoko,int Minesum)
         {
@@ -72,16 +72,24 @@ namespace orizinal_mineseeeper
 
             Click += FirstClickEvent;
         }
+        /// <summary>
+        /// 地雷のないマスを開ける動作
+        /// </summary>
         public void Openfield()
         {
             int Cnt = 0;
             Cnt = countaroundmine(Cnt);
-            Text = Cnt.ToString();
+            Text = Cnt.ToString(); // 周りの地雷数表示
             BackColor = _OpenColor;
             Openedmas = true;
-            Click -= ClickEvent;
-            MouseDown -= RightMouseClick;  // クリックイベントの削除
+            Click -= ClickEvent; // 左クリックイベントの削除
+            MouseDown -= RightMouseClick;  // 右クリックイベントの削除
         }
+        /// <summary>
+        /// 周囲８マスの地雷を数える
+        /// </summary>
+        /// <param name="C"></param>
+        /// <returns></returns>
         public int countaroundmine(int C)
         {
             for (int i = 0; i < _CheckData.Length; i++)
@@ -96,7 +104,10 @@ namespace orizinal_mineseeeper
             }
             return C;
         }
-        public void Openmine()
+        /// <summary>
+        /// 地雷を開けた動作
+        /// </summary>
+        public void Openmine() 
         {
             Text = ("M");
             MessageBox.Show("あなたは地雷を踏みました lol");
@@ -105,6 +116,9 @@ namespace orizinal_mineseeeper
             Click -= ClickEvent;
             MouseDown -= RightMouseClick;  // クリックイベントの削除
         }
+        /// <summary>
+        /// 地雷があるマスかないマスか判定し別の処理を行う
+        /// </summary>
         public void mineCheck() // 共通のオープン処理
         {
             if (mineflag)
@@ -117,7 +131,9 @@ namespace orizinal_mineseeeper
             }
             
         }
-
+        /// <summary>
+        /// 周囲８マスを表す変数
+        /// </summary>
         private int[][] _CheckData =
         {
             new int[]{ -1, -1},
@@ -129,7 +145,9 @@ namespace orizinal_mineseeeper
             new int[]{  1,  0},
             new int[]{  1,  1},
         };
-
+        /// <summary>
+        /// 旗を立てるか消す動作
+        /// </summary>
         public void flagPoint()
         {
             if (flagedflag)
@@ -146,8 +164,10 @@ namespace orizinal_mineseeeper
                 _Form1.flagedCounter(true);
             }
         }
-
-        public void specialopen()
+        /// <summary>
+        /// つるはしを使う動作
+        /// </summary>
+        public void turuhasiopen()
         {
             if (mineflag)
             {
@@ -172,7 +192,11 @@ namespace orizinal_mineseeeper
                 Openfield();
             }
         }
-
+        /// <summary>
+        /// 通常のクリック動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void ClickEvent(object sender, EventArgs e)
         {
             int i;
@@ -185,24 +209,27 @@ namespace orizinal_mineseeeper
             {
                 _Form1.Getfieldbutton(tate, yoko).flagPoint();
             }
-            if (modeflag == 2)
+            if (modeflag == 2) // モードつるはし
             {
                 specialstock = _Form1.Returnspecialstock();
-                if (specialstock >= 0) _Form1.Getfieldbutton(tate, yoko).specialopen();
+                if (specialstock >= 0) _Form1.Getfieldbutton(tate, yoko).turuhasiopen();
             }
-            if (modeflag == 3)
+            if (modeflag == 3) // モード⇕
             {
                 tateSpstock = _Form1.ReturntateSpstock();
                 if (tateSpstock >= 0)
                 {
                     for (i = 0; i < tateyokoSize; i++)
                     {
-                        _Form1.Getfieldbutton(i, yoko).specialopen();
+                        _Form1.Getfieldbutton(i, yoko).turuhasiopen();
                     }
                 }
             }
             Checkfinish();
         }
+        /// <summary>
+        /// すべてのマスが、ひらくか旗が立っているか確認し終了を判定
+        /// </summary>
         private void Checkfinish()
         {
             int i = 0;
@@ -241,6 +268,11 @@ namespace orizinal_mineseeeper
                 if (perfectflag) MessageBox.Show("完璧にクリア! ");
             }
         }
+        /// <summary>
+        /// 最初にマスを開く動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void FirstClickEvent(object sender, EventArgs e)
         {
             // ランダムのインスタンス?
@@ -307,6 +339,11 @@ namespace orizinal_mineseeeper
         {
             Click += ClickEvent;
         }
+        /// <summary>
+        /// 右クリックで旗を動かす動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RightMouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
