@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,9 @@ namespace orizinal_mineseeeper
         private int tateSpstock; // 縦スペシャルの残り使用回数
 
         private LabeltateSpstock usetateSpstock; // tatesp回数ラベルの参照
+
+        private TimeSpan swtime = new TimeSpan(0, 0, 0); // 初期値
+        private TimeSpan oneSecond = new TimeSpan(0, 0, 1); // 1秒
 
         private void button1_Click(object sender, EventArgs e)　// スタートボタンを押したとき
         {
@@ -80,6 +84,19 @@ namespace orizinal_mineseeeper
             textBox1.Visible = false;
 
             button2.Visible = true; // インフォボタンを表示
+
+            label7.Visible = true;
+            label8.Visible = true;     // 時間を表示
+
+            // ここからタイマーの処理
+
+            timer1.Interval = 1000; // インターバルを1000ミリ秒
+
+            timer1.Tick += Timer1_Tick;
+
+            timer1.Start(); // タイマー開始
+
+            // タイマーの処理　終わり！
 
             _buttonArray = new create_field[FieldSize, FieldSize];　// フィールドのボタンの参照
 
@@ -213,6 +230,19 @@ namespace orizinal_mineseeeper
                 "３.すべてのマスがひらくか旗が立つと終了\n\n" +
                 "　 ひらいた地雷のマスは赤く　地雷のないマスに立っていた旗は緑になる\n\n" +
                 "　 赤と緑のマスが０個を目指そう");
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e) // タイマー毎秒の処理
+        {
+            swtime = swtime + oneSecond; // 表示する時間に１秒を足す
+
+            label7.Text = string.Format("{0:00}:{1:00}:{2:00}",
+                swtime.Hours, swtime.Minutes, swtime.Seconds); // 測った時間を入れる
+        }
+
+        public void TimeStop()
+        {
+            timer1.Stop();
         }
     }
 }

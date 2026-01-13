@@ -264,6 +264,7 @@ namespace orizinal_mineseeeper
             }
             if (finishflag)
             {
+                _Form1.TimeStop();
                 MessageBox.Show("終了　リザルトを表示します");
                 for (i = 0; i < tateyokoSize; i++)
                 {
